@@ -60,6 +60,12 @@ describe("QueryProcessor", () => {
         expect(response).toBe("1");
     });
 
+    test('should return 729 and 4096 for square and cube list', () => {
+        const query = "Which of the following numbers is both a square and a cube: 729, 3573, 900, 2665, 3344, 489, 4096?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("729, 4096");
+    });
+
     test('should return numbers that are primes', () => {
         const query = "Which of the following numbers are primes: 43, 96, 67, 81, 64?";
         const response: string = QueryProcessor(query);

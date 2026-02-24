@@ -59,11 +59,11 @@ export default function QueryProcessor(query: string): string {
       .map((s) => parseInt(s.trim(), 10))
       .filter((n) => !isNaN(n));
     const isPerfectSquare = (n: number) => {
-      const r = Math.floor(Math.sqrt(n));
+      const r = Math.round(Math.sqrt(n));
       return r * r === n;
     };
     const isPerfectCube = (n: number) => {
-      const r = Math.floor(Math.cbrt(n));
+      const r = Math.round(Math.cbrt(n));
       return r * r * r === n;
     };
     const both = numbers.filter(
