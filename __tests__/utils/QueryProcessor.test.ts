@@ -72,6 +72,18 @@ describe("QueryProcessor", () => {
         expect(response).toBe("215671155821681003462656");
     });
 
+    test('should return 90 to the power of 29', () => {
+        const query = "What is 90 to the power of 29?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("471012869724624483492160368900000000000000000000000000000");
+    });
+
+    test('should return plus multiplied by (multiplication first)', () => {
+        const query = "What is 47 plus 67 multiplied by 96?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("6479");
+    });
+
     test('should return numbers that are both square and cube', () => {
         const query = "Which of the following numbers is both a square and a cube: 948, 4194, 1103, 36, 4913, 1, 2405?";
         const response: string = QueryProcessor(query);

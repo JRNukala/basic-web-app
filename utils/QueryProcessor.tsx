@@ -28,6 +28,16 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  const plusMultMatch = query.match(
+    /what is (\d+) plus (\d+) multiplied by (\d+)/i
+  );
+  if (plusMultMatch) {
+    const sum =
+      parseInt(plusMultMatch[1], 10) +
+      parseInt(plusMultMatch[2], 10) * parseInt(plusMultMatch[3], 10);
+    return String(sum);
+  }
+
   const plusManyMatch = query.match(/what is (\d+(?: plus \d+)+)/i);
   if (plusManyMatch) {
     const numbers = plusManyMatch[1]
@@ -78,9 +88,7 @@ export default function QueryProcessor(query: string): string {
     const base = BigInt(powerMatch[1]);
     const exp = parseInt(powerMatch[2], 10);
     if (exp >= 0 && exp <= 10000) {
-      let result = 1n;
-      for (let i = 0; i < exp; i++) result *= base;
-      return String(result);
+      return String(base ** BigInt(exp));
     }
   }
 
