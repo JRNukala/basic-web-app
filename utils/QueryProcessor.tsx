@@ -34,5 +34,14 @@ export default function QueryProcessor(query: string): string {
     return String(sum);
   }
 
+  const multipliedMatch = query.match(
+    /what is (\d+) multiplied by (\d+)/i
+  );
+  if (multipliedMatch) {
+    const product =
+      parseInt(multipliedMatch[1], 10) * parseInt(multipliedMatch[2], 10);
+    return String(product);
+  }
+
   return "";
 }
