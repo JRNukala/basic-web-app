@@ -56,8 +56,8 @@ export default function QueryProcessor(query: string): string {
   if (squareAndCubeMatch) {
     const numbers = squareAndCubeMatch[1]
       .split(",")
-      .map((s) => parseInt(s.trim(), 10))
-      .filter((n) => !isNaN(n));
+      .map((s) => parseInt(s.trim().replace(/\D+$/, ""), 10))
+      .filter((n) => !isNaN(n) && n > 0);
     const isPerfectSquare = (n: number) => {
       const r = Math.round(Math.sqrt(n));
       return r * r === n;
