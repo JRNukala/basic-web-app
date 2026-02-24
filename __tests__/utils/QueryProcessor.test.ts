@@ -1,7 +1,12 @@
-import QueryProcessor from "../../utils/QueryProcessor";
+import QueryProcessor, { evalArithmetic } from "../../utils/QueryProcessor";
 import '@testing-library/jest-dom'
 
 describe("QueryProcessor", () => {
+    test("evalArithmetic works for 75 multiplied by 85", () => {
+        const r = evalArithmetic("75 multiplied by 85");
+        expect(r).not.toBeNull();
+        expect(String(r)).toBe("6375");
+    });
     test("should return a string", () => {
         const query = "test";
         const response: string = QueryProcessor(query);
@@ -106,5 +111,17 @@ describe("QueryProcessor", () => {
         const query = "Which of the following numbers are primes: 43, 96, 67, 81, 64?";
         const response: string = QueryProcessor(query);
         expect(response).toBe("43, 67");
+    });
+
+    test('should return scrabble score of cloud', () => {
+        const query = "What is the scrabble score of cloud?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("8");
+    });
+
+    test('should return anagram of dictionary', () => {
+        const query = "Which of the following is an anagram of dictionary: incendiary, indicatory, butterfly, abdication?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("indicatory");
     });
 });
