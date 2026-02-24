@@ -67,5 +67,28 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  const primesMatch = query.match(
+    /which of the following numbers are primes?:\s*([\d,\s]+)/i
+  );
+  if (primesMatch) {
+    const numbers = primesMatch[1]
+      .split(",")
+      .map((s) => parseInt(s.trim(), 10))
+      .filter((n) => !isNaN(n) && n >= 2);
+    const isPrime = (n: number) => {
+      if (n < 2) return false;
+      if (n === 2) return true;
+      if (n % 2 === 0) return false;
+      for (let d = 3; d * d <= n; d += 2) {
+        if (n % d === 0) return false;
+      }
+      return true;
+    };
+    const primes = numbers.filter(isPrime);
+    if (primes.length > 0) {
+      return primes.join(", ");
+    }
+  }
+
   return "";
 }
