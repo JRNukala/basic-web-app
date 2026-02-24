@@ -43,5 +43,29 @@ export default function QueryProcessor(query: string): string {
     return String(product);
   }
 
+  const squareAndCubeMatch = query.match(
+    /which of the following numbers is both a square and a cube:\s*([\d,\s]+)/i
+  );
+  if (squareAndCubeMatch) {
+    const numbers = squareAndCubeMatch[1]
+      .split(",")
+      .map((s) => parseInt(s.trim(), 10))
+      .filter((n) => !isNaN(n));
+    const isPerfectSquare = (n: number) => {
+      const r = Math.floor(Math.sqrt(n));
+      return r * r === n;
+    };
+    const isPerfectCube = (n: number) => {
+      const r = Math.floor(Math.cbrt(n));
+      return r * r * r === n;
+    };
+    const both = numbers.filter(
+      (n) => isPerfectSquare(n) && isPerfectCube(n)
+    );
+    if (both.length > 0) {
+      return both.join(", ");
+    }
+  }
+
   return "";
 }
