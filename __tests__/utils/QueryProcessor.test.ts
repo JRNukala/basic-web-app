@@ -54,6 +54,12 @@ describe("QueryProcessor", () => {
         expect(response).toBe("6375");
     });
 
+    test('should return power result', () => {
+        const query = "What is 88 to the power of 12?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("215671155821681003462656");
+    });
+
     test('should return numbers that are both square and cube', () => {
         const query = "Which of the following numbers is both a square and a cube: 948, 4194, 1103, 36, 4913, 1, 2405?";
         const response: string = QueryProcessor(query);

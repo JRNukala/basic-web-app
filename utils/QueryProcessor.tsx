@@ -50,6 +50,19 @@ export default function QueryProcessor(query: string): string {
     return String(product);
   }
 
+  const powerMatch = query.match(
+    /what is (\d+) to the power of (\d+)/i
+  );
+  if (powerMatch) {
+    const base = BigInt(powerMatch[1]);
+    const exp = parseInt(powerMatch[2], 10);
+    if (exp >= 0 && exp <= 10000) {
+      let result = 1n;
+      for (let i = 0; i < exp; i++) result *= base;
+      return String(result);
+    }
+  }
+
   const squareAndCubeMatch = query.match(
     /which of the following numbers is both a square and a cube:\s*([\d,\s]+)/i
   );
