@@ -28,6 +28,18 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  const plusManyMatch = query.match(/what is (\d+(?: plus \d+)+)/i);
+  if (plusManyMatch) {
+    const numbers = plusManyMatch[1]
+      .split(/\s*plus\s*/i)
+      .map((s) => parseInt(s.trim(), 10))
+      .filter((n) => !isNaN(n));
+    if (numbers.length >= 2) {
+      const sum = numbers.reduce((a, b) => a + b, 0);
+      return String(sum);
+    }
+  }
+
   const plusMatch = query.match(/what is (\d+) plus (\d+)/i);
   if (plusMatch) {
     const sum = parseInt(plusMatch[1], 10) + parseInt(plusMatch[2], 10);

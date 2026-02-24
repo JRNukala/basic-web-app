@@ -42,6 +42,12 @@ describe("QueryProcessor", () => {
         expect(response).toBe("109");
     });
 
+    test('should return sum for three numbers plus', () => {
+        const query = "What is 20 plus 68 plus 74?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("162");
+    });
+
     test('should return difference for minus', () => {
         const query = "What is 16 minus 54?";
         const response: string = QueryProcessor(query);
