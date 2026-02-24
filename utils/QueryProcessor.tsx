@@ -15,5 +15,18 @@ export default function QueryProcessor(query: string): string {
     return "jnukala";
   }
 
+  const largestMatch = query.match(
+    /which of the following numbers is the largest:\s*([\d,\s]+)/i
+  );
+  if (largestMatch) {
+    const numbers = largestMatch[1]
+      .split(",")
+      .map((s) => parseInt(s.trim(), 10))
+      .filter((n) => !isNaN(n));
+    if (numbers.length > 0) {
+      return String(Math.max(...numbers));
+    }
+  }
+
   return "";
 }

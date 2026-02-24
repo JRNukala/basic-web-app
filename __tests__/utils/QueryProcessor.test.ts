@@ -29,4 +29,10 @@ describe("QueryProcessor", () => {
         const response: string = QueryProcessor(query);
         expect(response).toBe("jnukala");
     });
+
+    test('should return largest number', () => {
+        const query = "Which of the following numbers is the largest: 65, 90, 76?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("90");
+    });
 });
