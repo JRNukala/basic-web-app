@@ -60,6 +60,12 @@ describe("QueryProcessor", () => {
         expect(response).toBe("6375");
     });
 
+    test('should return product plus for multiplied by plus', () => {
+        const query = "What is 23 multiplied by 15 plus 82?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("427");
+    });
+
     test('should return power result', () => {
         const query = "What is 88 to the power of 12?";
         const response: string = QueryProcessor(query);

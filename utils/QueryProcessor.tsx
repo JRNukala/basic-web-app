@@ -56,6 +56,15 @@ export default function QueryProcessor(query: string): string {
   const multipliedMatch = query.match(
     /what is (\d+) multiplied by (\d+)/i
   );
+  const multPlusMatch = query.match(
+    /what is (\d+) multiplied by (\d+) plus (\d+)/i
+  );
+  if (multPlusMatch) {
+    const product =
+      parseInt(multPlusMatch[1], 10) * parseInt(multPlusMatch[2], 10);
+    const sum = product + parseInt(multPlusMatch[3], 10);
+    return String(sum);
+  }
   if (multipliedMatch) {
     const product =
       parseInt(multipliedMatch[1], 10) * parseInt(multipliedMatch[2], 10);
