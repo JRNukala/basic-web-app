@@ -28,5 +28,11 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  const plusMatch = query.match(/what is (\d+) plus (\d+)/i);
+  if (plusMatch) {
+    const sum = parseInt(plusMatch[1], 10) + parseInt(plusMatch[2], 10);
+    return String(sum);
+  }
+
   return "";
 }
